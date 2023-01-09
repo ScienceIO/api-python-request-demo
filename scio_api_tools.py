@@ -30,7 +30,7 @@ def poll_for_response(
     After each poll, the time_delay increases
     by a multiplicative factor (exp_backoff).
 
-    Arg:
+    Args:
         base_url (str):         
             url for the api endpoint
         request_id (str):     
@@ -90,6 +90,9 @@ def call_api(model: str, text: str) -> dict:
 
     Returns:
         dict: inference result
+
+    Raises:
+        Exception: if request fails
     """
 
     # get credentials
@@ -120,10 +123,3 @@ def call_api(model: str, text: str) -> dict:
 
     return inference_result
 
-
-if __name__=="__main__":
-    inference_result = call_api(
-        model="identify-phi",
-        text="Gaurav Kaushik is a doctor but not that kind of doctor.",
-    )
-    print(json.dumps(inference_result, indent=4))

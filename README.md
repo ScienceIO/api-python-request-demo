@@ -17,9 +17,20 @@ export SCIENCEIO_KEY_ID={YOUR_API_KEY_ID}
 export SCIENCEIO_KEY_SECRET={YOUR_API_KEY_SECRET}
 ```
 
-## Identify Demo
+## Demos
+
+### Identify
 `python identify_demo.py --text "Text goes here"`
 
 
-## Redact Demo
+### Redact
 `python redact_demo.py --text "Text goes here"`
+
+If you want to use **text from a file**:
+
+```
+python identify_demo.py --text "$(< example_note.text)"
+python redact_demo.py --text "$(< example_note.text)"
+```
+
+
