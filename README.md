@@ -20,7 +20,7 @@ export SCIENCEIO_KEY_SECRET={YOUR_API_KEY_SECRET}
 
 ### Environment
 
-Please use Python 3.7 or higher. You may pip install the dependencies for this repo with
+Please use Python 3.7 or higher. You may pip-install the dependencies for this repo with:
 
 ```bash
 pip install -r requirements.txt
@@ -30,15 +30,19 @@ pip install -r requirements.txt
 
 ### Identify
 
-`python identify_demo.py --text "Text goes here"`
+```bash
+python identify_demo.py --text "Text goes here"
+```
 
 ### Redact
 
-`python redact_demo.py --text "Text goes here"`
+```bash
+python redact_demo.py --text "Text goes here"
+```
 
 If you want to use **text from a file**:
 
 ```bash
-python identify_demo.py --text "$(< example_note.text)"
-python redact_demo.py --text "$(< example_note.text)"
+python identify_demo.py --text "$(< example_note_01.text)"
+python redact_demo.py --text "$(< example_note_01.text)"
 ```
