@@ -1,8 +1,8 @@
-import json
 import os
-import requests
 import time
 from typing import Tuple
+
+import requests
 
 
 def get_credentials() -> Tuple[str, str]:
@@ -11,19 +11,19 @@ def get_credentials() -> Tuple[str, str]:
     Returns:
         Tuple[str, str]: API key and API secret
     """
-    api_key_id=os.getenv("SCIENCEIO_KEY_ID")
-    api_key_secret=os.getenv("SCIENCEIO_KEY_SECRET")
+    api_key_id = os.getenv("SCIENCEIO_KEY_ID")
+    api_key_secret = os.getenv("SCIENCEIO_KEY_SECRET")
     return api_key_id, api_key_secret
 
 
 def poll_for_response(
-        base_url:str, 
-        request_id:str, 
-        max_attempts:int = 8,
-        time_delay:float = 1.0,
-        exp_backoff:float = 1.5,
-    ) -> dict:
-    """ Poll the ScienceIO endpoint for a response.
+    base_url: str,
+    request_id: str,
+    max_attempts: int = 8,
+    time_delay: float = 1.0,
+    exp_backoff: float = 1.5,
+) -> dict:
+    """Poll the ScienceIO endpoint for a response.
 
     The ScienceIO API is asynchronous, so we poll
     with a time_delay until the response is ready.
@@ -31,13 +31,13 @@ def poll_for_response(
     by a multiplicative factor (exp_backoff).
 
     Args:
-        base_url (str):         
+        base_url (str):
             url for the api endpoint
-        request_id (str):     
+        request_id (str):
             id for the request being polled
-        max_attempts (int): 
+        max_attempts (int):
             maximum polls to make [default: 8]
-        time_delay (float): 
+        time_delay (float):
             time to wait between each poll in secs [default: 1]
         exp_backoff (float):
             if True, each poll will increase by exp_backoff*time_delay
@@ -75,13 +75,13 @@ def poll_for_response(
         time.sleep(time_delay)
         time_delay *= exp_backoff
 
-    raise Exception(f"Maximum number of attempts made. Try again soon.")
+    raise Exception("Maximum number of attempts made. Try again soon.")
 
 
 def call_api(model: str, text: str) -> dict:
     """Call the ScienceIO API to perform inference.
 
-    Submit text to a ScienceIO model for inference 
+    Submit text to a ScienceIO model for inference
     and retrieve results via API.
 
     Args:
@@ -102,18 +102,22 @@ def call_api(model: str, text: str) -> dict:
     url = f"https://api.aws.science.io/v2/{model}"
     json_request = {"text": text}
     headers = {
-        'x-api-id': api_key_id,
-        'x-api-secret': api_key_secret,
-        'Content-Type': 'application/json'
+        "x-api-id": api_key_id,
+        "x-api-secret": api_key_secret,
+        "Content-Type": "application/json",
     }
-    response = requests.request("POST", url, headers=headers, json=json_request)
+    response = requests.request(
+        "POST", url, headers=headers, json=json_request
+    )
 
     # async api will return 201 status code if processing successfully
     status_code = response.status_code
 
     if status_code != 201:
         reason = response.reason
-        raise Exception(f"Request failed with status code {status_code} and reason: {reason}")
+        raise Exception(
+            f"Request failed with status code {status_code} and reason: {reason}"
+        )
 
     # get request_id to poll for a response
     request_id = response.json()["request_id"]
@@ -122,4 +126,3 @@ def call_api(model: str, text: str) -> dict:
     inference_result = poll_for_response(url, request_id)
 
     return inference_result
-
