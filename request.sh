@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# make "model" a parameter to the script
-
-# make a request to the API and store the results in the variable "response"
 response=$(
     curl https://api.aws.science.io/v2/identify-phi \
         --request POST \
@@ -14,7 +11,7 @@ response=$(
 
 echo "Inference request submitted: $response"
 
-request_id=$(echo $response | sed -E 's/.*"request_id": "([^"]+)".*/\1/')
+request_id=$(echo $response | jq -r '.request_id')
 
 echo "Polling for response with request_id: $request_id"
 
@@ -27,10 +24,10 @@ while true; do
             --header "x-api-secret: $SCIENCEIO_API_SECRET"
     )
 
-    status=$(echo $response | sed -E 's/.*"inference_status": "([^"]+)".*/\1/')
+    status=$(echo $response | jq -r '.inference_status')
 
     if [ "$status" = "COMPLETED" ]; then
-        echo $response | sed -E 's/.*"inference_result": ([^,]+).*/\1/'
+        echo $response | jq -r '.inference_result'
         break
     fi
 
