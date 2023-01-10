@@ -4,8 +4,8 @@ response=$(
     curl https://api.aws.science.io/v2/identify-phi \
         --request POST \
         --header "Content-type: application/json" \
-        --header "x-api-id: $SCIENCEIO_API_ID" \
-        --header "x-api-secret: $SCIENCEIO_API_SECRET" \
+        --header "x-api-id: $SCIENCEIO_KEY_ID" \
+        --header "x-api-secret: $SCIENCEIO_KEY_SECRET" \
         --data "{\"text\": \"$1\"}"
 )
 
@@ -20,8 +20,8 @@ while true; do
     response=$(
         curl https://api.aws.science.io/v2/identify-phi/$request_id \
             --header "Content-type: application/json" \
-            --header "x-api-id: $SCIENCEIO_API_ID" \
-            --header "x-api-secret: $SCIENCEIO_API_SECRET"
+            --header "x-api-id: $SCIENCEIO_KEY_ID" \
+            --header "x-api-secret: $SCIENCEIO_KEY_SECRET"
     )
 
     status=$(echo $response | jq -r '.inference_status')
