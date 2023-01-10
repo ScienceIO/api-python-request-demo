@@ -26,7 +26,7 @@ def poll_for_response(
     """ Poll the ScienceIO endpoint for a response.
 
     The ScienceIO API is asynchronous, so we poll
-    at with a time_delay until the response is ready.
+    with a time_delay until the response is ready.
     After each poll, the time_delay increases
     by a multiplicative factor (exp_backoff).
 
