@@ -1,0 +1,11 @@
+Patient: John Doe
+Address: 122 1st Ave, New York, NY, USA
+Phone: 555-555-1212
+Admission date: December 13, 2022
+Diagnosis: UTI
+Physician: Dr. Jane Smith
+NPI: 1234567890
+Physician number: 555-555-9876
+
+Clinical note:
+Mr. Doe is a 75-year-old male with a history of urinary tract infections. He presented to the Pearson clinic today with symptoms of dysuria and frequency. A urine culture was performed by Dr. Jones and showed significant growth of Escherichia coli. The patient was started on a course of oral antibiotics and will follow up with the clinic in one week for a repeat urine culture. If no improvement, patient will be referred to St. Joseph Hospital.
