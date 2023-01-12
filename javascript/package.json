@@ -1,0 +1,12 @@
+{
+  "name": "scienceio-request-demo",
+  "version": "1.0.0",
+  "description": "A JavaScript demo showing how to use ScienceIO's NLP API",
+  "main": "index.js",
+  "repository": "https://github.com/ScienceIO/api-python-request-demo",
+  "author": "ScienceIO",
+  "private": false,
+  "dependencies": {
+    "yargs": "^17.6.2"
+  }
+}

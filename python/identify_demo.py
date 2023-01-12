@@ -2,7 +2,7 @@ import json
 
 import click
 
-from scio_api_tools import call_api
+from python.scio_api_tools import call_api
 
 
 @click.command()
