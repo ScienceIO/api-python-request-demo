@@ -43,6 +43,6 @@ python redact_demo.py --text "Text goes here"
 If you want to use **text from a file**:
 
 ```bash
-python identify_demo.py --text "$(< example_note_01.text)"
-python redact_demo.py --text "$(< example_note_01.text)"
+python identify_demo.py --text "$(< example_note_01.txt)"
+python redact_demo.py --text "$(< example_note_01.txt)"
 ```
