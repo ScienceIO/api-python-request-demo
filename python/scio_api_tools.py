@@ -40,7 +40,7 @@ def poll_for_response(
         time_delay (float):
             time to wait between each poll in secs [default: 1]
         exp_backoff (float):
-            if True, each poll will increase by exp_backoff*time_delay
+            each poll will increase by exp_backoff*time_delay [default: 1.5]
 
     Returns:
         dict: inference results from the polled response
